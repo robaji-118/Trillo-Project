@@ -30,25 +30,123 @@
         </form>
 
         <nav class="user-nav">
-          <div class="user-nav__icon-box">
-            <svg class="user-nav__icon">
-              <use xlink:href="img/sprite.svg#icon-bookmark"></use>
-            </svg>
-            <span class="user-nav__notification">7</span>
-          </div>
-          <div class="user-nav__icon-box">
-            <svg class="user-nav__icon">
-              <use xlink:href="img/sprite.svg#icon-chat"></use>
-            </svg>
-            <span class="user-nav__notification">13</span>
-          </div>
-          <div class="user-nav__user">
+          <input
+            type="checkbox"
+            id="userBookmarkToggle"
+            class="user-nav__toggle-bookmark"
+            aria-hidden="true"
+          />
+          <label for="userBookmarkToggle" class="user-nav__label">
+            <div class="user-nav__icon-box">
+              <svg class="user-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-bookmark"></use>
+              </svg>
+              <span class="user-nav__notification">7</span>
+            </div>
+          </label>
+          <div class="user-nav__bookmark-popup">
             <img
-              src="img/user.jpg"
-              alt="User photo"
-              class="user-nav__user-photo"
+              src="/img/hotel-1.jpg"
+              alt="Bookmark photo"
+              class="user-nav__bookmark-popup-photo"
             />
-            <span class="user-nav__user-name">Rojabby</span>
+            <p class="user-nav__bookmark-popup-text">jhonathan</p>
+          </div>
+
+          <input
+            type="checkbox"
+            id="userChatToggle"
+            class="user-nav__toggle-chat"
+            aria-hidden="true"
+          />
+          <label for="userChatToggle" class="user-nav__label">
+            <div class="user-nav__icon-box">
+              <svg class="user-nav__icon">
+                <use xlink:href="img/sprite.svg#icon-chat"></use>
+              </svg>
+              <span class="user-nav__notification">13</span>
+            </div>
+          </label>
+          <div class="user-nav__chat-group">
+            <div class="user-nav__chat-group-popup">
+              <img
+                class="user-nav__chat-group-photo"
+                src="img/user-1.jpg"
+                alt="User photo"
+              />
+              <div class="">
+                <div class="user-nav__chat-group-text">
+                  <p
+                    class="user-nav__chat-group-text user-nav__chat-group-text--name"
+                  >
+                    jhonathan
+                  </p>
+                  <p class="">Hey, how are you?</p>
+                </div>
+              </div>
+              <div class="user-nav__chat-group-message-count"><p>3</p></div>
+            </div>
+            <div class="user-nav__chat-group-popup">
+              <img
+                class="user-nav__chat-group-photo"
+                src="img/user-2.jpg"
+                alt="User photo"
+              />
+              <div class="">
+                <div class="user-nav__chat-group-text">
+                  <p
+                    class="user-nav__chat-group-text user-nav__chat-group-text--name"
+                  >
+                    Sthepiana
+                  </p>
+                  <p class="">Hey, how are you?</p>
+                </div>
+              </div>
+              <div class="user-nav__chat-group-message-count"><p>1</p></div>
+            </div>
+            <div class="user-nav__chat-group-popup">
+              <img
+                class="user-nav__chat-group-photo"
+                src="img/user-3.jpg"
+                alt="User photo"
+              />
+              <div class="">
+                <div class="user-nav__chat-group-content">
+                  <p
+                    class="user-nav__chat-group-text user-nav__chat-group-text--name"
+                  >
+                    Carlos
+                  </p>
+                  <p class="user-nav__chat-group-message-preview">
+                    I wanna booking Hotel
+                  </p>
+                </div>
+              </div>
+              <div class="user-nav__chat-group-message-count"><p>2</p></div>
+            </div>
+          </div>
+          <input
+            type="checkbox"
+            id="userMenuToggle"
+            class="user-nav__toggle-menu"
+            aria-hidden="true"
+          />
+          <label for="userMenuToggle" class="user-nav__label">
+            <div class="user-nav__user">
+              <img
+                src="img/user.jpg"
+                alt="User photo"
+                class="user-nav__user-photo"
+              />
+              <span class="user-nav__user-name">Rojabby</span>
+            </div>
+          </label>
+          <div class="user-nav__user-menu">
+            <ul>
+              <li><a href="#">My Bookings</a></li>
+              <li><a href="#">Settings</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
           </div>
         </nav>
       </header>
@@ -238,9 +336,8 @@
             </h2>
 
             <button class="btn">
-                <span class="btn__visible">Book now</span>
-                <span class="btn__invisible">Only 4 rooms left!</span>
-                
+              <span class="btn__visible">Book now</span>
+              <span class="btn__invisible">Only 4 rooms left!</span>
             </button>
           </div>
         </main>
