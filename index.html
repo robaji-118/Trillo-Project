@@ -20,13 +20,48 @@
           <input
             type="text"
             class="search__input"
-            placeholder="Search hotels..."
+            placeholder="Cari hotel..."
           />
           <button class="search__button">
             <svg class="search__icon">
               <use xlink:href="img/sprite.svg#icon-magnifying-glass"></use>
             </svg>
           </button>
+
+          <div class="search__recommendations">
+            <ul class="search__recommendations-list">
+              <li class="search__recommendations-item">
+                <img
+                  src="img/hotel-1.jpg"
+                  alt="Foto Luxury Resort & Spa"
+                  class="search__recommendations-img"
+                />
+                <span class="search__recommendations-text"
+                  >Luxury Resort & Spa</span
+                >
+              </li>
+              <li class="search__recommendations-item">
+                <img
+                  src="img/hotel-2.jpg"
+                  alt="Foto City Center Inn"
+                  class="search__recommendations-img"
+                />
+                <span class="search__recommendations-text"
+                  >City Center Inn</span
+                >
+              </li>
+              <li class="search__recommendations-item">
+                <img
+                  src="img/hotel-3.jpg"
+                  alt="Foto Coastal Breeze Suites"
+                  class="search__recommendations-img"
+                />
+                <span class="search__recommendations-text"
+                  >Coastal Breeze Suites</span
+                >
+              </li>
+            </ul>
+          </div>
         </form>
 
         <nav class="user-nav">
@@ -50,7 +85,16 @@
               alt="Bookmark photo"
               class="user-nav__bookmark-popup-photo"
             />
-            <p class="user-nav__bookmark-popup-text">jhonathan</p>
+            <p class="user-nav__bookmark-popup-text">
+              Las Parmaas
+
+              <span class="user-nav__bookmark-popup-text-span">
+                <svg class="overview__icon-star">
+                  <use xlink:href="img/sprite.svg#icon-star"></use>
+                </svg>
+                5.0</span
+              >
+            </p>
           </div>
 
           <input
@@ -111,15 +155,13 @@
                 alt="User photo"
               />
               <div class="">
-                <div class="user-nav__chat-group-content">
+                <div class="user-nav__chat-group-text">
                   <p
                     class="user-nav__chat-group-text user-nav__chat-group-text--name"
                   >
                     Carlos
                   </p>
-                  <p class="user-nav__chat-group-message-preview">
-                    I wanna booking Hotel
-                  </p>
+                  <p class="">I wanna booking....</p>
                 </div>
               </div>
               <div class="user-nav__chat-group-message-count"><p>2</p></div>
@@ -195,12 +237,15 @@
           <div class="gallery">
             <figure class="gallery__item">
               <img src="img/hotel-1.jpg" alt="Hotel 1" class="gallery__photo" />
+              <figcaption class="gallery__caption">Las Palmas Hotel</figcaption>
             </figure>
             <figure class="gallery__item">
               <img src="img/hotel-2.jpg" alt="Hotel 2" class="gallery__photo" />
+              <figcaption class="gallery__caption">Olivia Hotel</figcaption>
             </figure>
             <figure class="gallery__item">
               <img src="img/hotel-3.jpg" alt="Hotel 3" class="gallery__photo" />
+              <figcaption class="gallery__caption">Rodrigo Hotel</figcaption>
             </figure>
           </div>
 

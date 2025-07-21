@@ -52,11 +52,14 @@ body {
   margin-left: 3rem;
 }
 
+/* Pastikan .search memiliki posisi relatif jika ada elemen lain yang absolute di dalamnya */
 .search {
   flex: 0 0 40%;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative; /* Penting untuk positioning rekomendasi secara absolut */
+  /* Saat input di dalam .search fokus, tampilkan rekomendasi */
 }
 @media only screen and (max-width: 31.25em) {
   .search {
@@ -65,6 +68,12 @@ body {
     background-color: var(--color-grey-light-2);
   }
 }
+.search:focus-within .search__recommendations {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 .search__input {
   font-family: inherit;
   font-size: inherit;
@@ -86,9 +95,11 @@ body {
   font-weight: 100;
   color: var(--color-grey-dark-4);
 }
+
 .search__input:focus + .search__button {
   background-color: var(--color-grey-light-3);
 }
+
 .search__button {
   border: none;
   background-color: var(--color-gray-light-2);
@@ -99,10 +110,60 @@ body {
 .search__button:active {
   transform: translateY(2px);
 }
+
 .search__icon {
   height: 2rem;
   width: 2rem;
   fill: var(--color-grey-dark-3);
+}
+
+.search__recommendations {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-grey-light-1);
+  border: 1px solid var(--color-grey-light-3);
+  border-top: none;
+  z-index: 99;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-1rem);
+  transition: all 0.3s ease-out;
+}
+
+.search__recommendations-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search__recommendations-item {
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: var(--color-grey-dark-2);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.search__recommendations-item:hover {
+  background-color: var(--color-grey-light-2);
+}
+
+.search__recommendations-img {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.search__recommendations-text {
+  font-size: 1.6rem;
+  font-weight: 400;
 }
 
 .user-nav {
@@ -154,7 +215,7 @@ body {
 }
 .user-nav__user-menu {
   position: absolute;
-  top: calc(100% + 1rem);
+  top: calc(100% + 0.1rem);
   right: 0;
   background-color: white;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.1);
@@ -185,13 +246,13 @@ body {
 }
 .user-nav__bookmark-popup {
   position: absolute;
-  top: calc(100% + 1rem);
-  right: 0;
+  top: calc(100% + 0.1rem);
+  right: 10rem;
   background-color: white;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   min-height: 10rem;
-  min-width: 50rem;
+  min-width: 25rem;
   padding: 1rem;
   z-index: 99999;
   opacity: 0;
@@ -219,17 +280,23 @@ body {
   text-align: center;
   margin-bottom: 1rem;
   color: var(--color-grey-dark-1);
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+}
+.user-nav__bookmark-popup-text-span {
+  text-align: center;
+  color: var(--color-primary);
 }
 .user-nav__chat-group {
   position: absolute;
-  top: calc(100% + 1rem);
-  right: 3rem;
+  top: calc(100% + 0.1rem);
+  right: 2rem;
   background-color: white;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.1);
   border-radius: 3px;
-  min-height: 30rem;
-  min-width: 40rem;
-  padding: 1rem;
+  min-height: 15rem;
+  min-width: 30rem;
   z-index: 99999;
   opacity: 0;
   visibility: hidden;
@@ -237,7 +304,7 @@ body {
   transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
 }
 .user-nav__chat-group-popup {
-  width: 100%;
+  width: 90%;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -260,7 +327,7 @@ body {
 .user-nav__chat-group-text {
   text-align: start;
   color: var(--color-grey-dark-3);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 .user-nav__chat-group-text--name {
   color: var(--color-grey-dark-1);
@@ -269,9 +336,8 @@ body {
 }
 .user-nav__chat-group-photo {
   width: 15%;
-  height: auto;
+  height: 15%;
   border-radius: 50%;
-  margin-right: 1rem;
 }
 .user-nav__toggle-menu {
   display: none;
@@ -397,15 +463,68 @@ body {
 .gallery {
   display: flex;
 }
+@media only screen and (max-width: 56.25em) {
+  .gallery {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.gallery__item {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  min-width: auto;
+}
+.gallery__item:hover .gallery__photo {
+  transform: scale(1.05);
+  filter: brightness(70%);
+}
+.gallery__item:hover .gallery__caption {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 .gallery__photo {
   width: 100%;
   display: block;
+  transition: all 0.3s ease;
+}
+
+.gallery__caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100%);
+  transition: all 0.3s ease;
 }
 
 .overview {
   display: flex;
   align-items: center;
   border-bottom: var(--line);
+}
+@media only screen and (max-width: 31.25em) {
+  .overview {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
 }
 .overview__heading {
   font-size: 2.25rem;
@@ -420,9 +539,20 @@ body {
     padding: 1.25rem 2rem;
   }
 }
+@media only screen and (max-width: 31.25em) {
+  .overview__heading {
+    font-size: 3rem;
+  }
+}
 .overview__stars {
   margin-right: auto;
   display: flex;
+}
+@media only screen and (max-width: 31.25em) {
+  .overview__stars {
+    margin-left: 1.5rem;
+    margin-top: -1rem;
+  }
 }
 .overview__icon-star, .overview__icon-location {
   width: 1.75rem;
@@ -433,6 +563,13 @@ body {
   font-size: 1.2rem;
   display: flex;
   vertical-align: center;
+}
+@media only screen and (max-width: 31.25em) {
+  .overview__location {
+    align-self: flex-end;
+    margin-right: 1rem;
+    margin-top: -2rem;
+  }
 }
 .overview__rating {
   background-color: var(--color-primary);
@@ -450,6 +587,18 @@ body {
     padding: 0 1.5rem;
   }
 }
+@media only screen and (max-width: 31.25em) {
+  .overview__rating {
+    margin: 0 auto;
+    width: 100%;
+    order: -1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient(rgba(var(--color-primary-rgb), 2), rgba(var(--color-primary-rgb), 0.34)), url(img/hotel-2.jpg);
+    background-size: cover;
+  }
+}
 .overview__rating-avangers {
   font-size: 2.25rem;
   font-weight: 300;
@@ -460,6 +609,12 @@ body {
     font-size: 1.8rem;
   }
 }
+@media only screen and (max-width: 31.25em) {
+  .overview__rating-avangers {
+    padding-bottom: 0.5rem;
+    font-size: 4rem;
+  }
+}
 .overview__rating-count {
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -467,6 +622,11 @@ body {
 @media only screen and (max-width: 37.5em) {
   .overview__rating-count {
     font-size: 0.5rem;
+  }
+}
+@media only screen and (max-width: 31.25em) {
+  .overview__rating-count {
+    font-size: 2rem;
   }
 }
 
@@ -552,6 +712,14 @@ body {
   color: var(--color-grey-dark-3);
   display: flex;
   align-items: center;
+}
+@media only screen and (max-width: 300px) {
+  .recommend {
+    display: block;
+  }
+  .recommend__photo {
+    margin-top: 2rem;
+  }
 }
 .recommend__count {
   margin-right: auto;
